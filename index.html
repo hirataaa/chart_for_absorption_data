@@ -41,7 +41,7 @@ var app = new Vue({
           "humidity" : 50.8+5-10,
           "weight" : 32.0+10-20,
           }
-      axios.post('http://139.162.125.21:7001/post_data', data ).then( res => {
+      axios.post('http://***:7001/post_data', data ).then( res => {
           console.log(data);
       });
 
@@ -99,7 +99,7 @@ var app = new Vue({
   },
   // ブラウザ起動時に実行
   mounted(){
-    axios.get('http://139.162.125.21:7001/data', {}).then( res => {
+    axios.get('http://***:7001/data', {}).then( res => {
         app.items = res.data;
         app.items.forEach(e =>{
             app.ds.push(e.date);
