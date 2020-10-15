@@ -30,6 +30,8 @@ var app = new Vue({
     ds : [],
     ts : [],
     hs : [],
+    t2s : [],
+    h2s : [],
     w1s : [],
     w2s : [],
     w3s : [],
@@ -46,7 +48,7 @@ var app = new Vue({
           // "weight3" : 54.0+10-20,
 
           }
-      axios.post('http://139.162.125.21:7001/data', data ).then( res => {
+      axios.post('http://***:7001/data', data ).then( res => {
           console.log(data);
       });
 
@@ -69,6 +71,18 @@ var app = new Vue({
             label: '湿度',
             data: app.hs,
             borderColor: "rgba(0,0,255,1)",
+            backgroundColor: "rgba(0,0,0,0)"
+          },
+          {
+            label: '気温2',
+            data: app.t2s,
+            borderColor: "rgba(255,0,100,1)",
+            backgroundColor: "rgba(0,0,0,0)"
+          },
+          {
+            label: '湿度2',
+            data: app.h2s,
+            borderColor: "rgba(100,0,255,1)",
             backgroundColor: "rgba(0,0,0,0)"
           },
           {
@@ -116,12 +130,14 @@ var app = new Vue({
   },
   // ブラウザ起動時に実行
   mounted(){
-    axios.get('http://139.162.125.21:7001/data', {}).then( res => {
+    axios.get('http://***:7001/data', {}).then( res => {
         app.items = res.data;
         app.items.forEach(e =>{
             app.ds.push(e.date);
             app.ts.push(e.temperature);
             app.hs.push(e.humidity);
+            app.t2s.push(e.temperature2);
+            app.h2s.push(e.humidity2);
             app.w1s.push(e.weight1);
             app.w2s.push(e.weight2);
             app.w3s.push(e.weight3);
